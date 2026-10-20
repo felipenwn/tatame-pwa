@@ -36,9 +36,11 @@ function Praticantes() {
   const salvar = async evento => {
     evento.preventDefault()
     try {
+      const dados = { ...formulario }
+      if (!dados.codigo) delete dados.codigo
       await requisicao('/praticante', {
         method: formulario.codigo ? 'PUT' : 'POST',
-        body: JSON.stringify(formulario)
+        body: JSON.stringify(dados)
       })
       setMensagem(formulario.codigo ? 'Praticante alterado' : 'Praticante criado')
       setFormulario(formularioVazio)

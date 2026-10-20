@@ -39,9 +39,11 @@ function Presencas() {
   const salvar = async evento => {
     evento.preventDefault()
     try {
+      const dados = { ...formulario }
+      if (!dados.codigo) delete dados.codigo
       await requisicao('/presenca', {
         method: formulario.codigo ? 'PUT' : 'POST',
-        body: JSON.stringify(formulario)
+        body: JSON.stringify(dados)
       })
       setMensagem(formulario.codigo ? 'Presença alterada' : 'Presença criada')
       setFormulario(formularioVazio)

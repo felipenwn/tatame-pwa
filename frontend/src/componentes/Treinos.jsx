@@ -35,9 +35,11 @@ function Treinos() {
   const salvar = async evento => {
     evento.preventDefault()
     try {
+      const dados = { ...formulario }
+      if (!dados.codigo) delete dados.codigo
       await requisicao('/treino', {
         method: formulario.codigo ? 'PUT' : 'POST',
-        body: JSON.stringify(formulario)
+        body: JSON.stringify(dados)
       })
       setMensagem(formulario.codigo ? 'Treino alterado' : 'Treino criado')
       setFormulario(formularioVazio)
