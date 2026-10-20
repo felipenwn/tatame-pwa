@@ -17,4 +17,4 @@ Aplicação para controle de praticantes, treinos e presenças de uma academia d
 
 ## Execução local
 
-Crie o banco `tatamepw` no PostgreSQL. Depois execute `npm install` e `npm start` dentro de `backend`. Em outro terminal, execute `npm install` e `npm run dev` dentro de `frontend`.
+Crie o banco `tatamepw` no PostgreSQL e copie `backend/.env.example` para `backend/.env`. Depois execute `npm install` e `npm start` dentro de `backend`. Em outro terminal, execute `npm install` e `npm run dev` dentro de `frontend`.
