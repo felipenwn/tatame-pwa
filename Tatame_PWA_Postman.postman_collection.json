@@ -12,19 +12,19 @@
     },
     {
       "key": "sufixo_teste",
-      "value": ""
+      "value": "1792672858777"
     },
     {
       "key": "codigo_praticante",
-      "value": ""
+      "value": "7"
     },
     {
       "key": "codigo_treino",
-      "value": ""
+      "value": "6"
     },
     {
       "key": "codigo_presenca",
-      "value": ""
+      "value": "4"
     }
   ],
   "item": [
@@ -72,7 +72,8 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"nome\": \"Teste Postman {{sufixo_teste}}\",\n  \"email\": \"postman.{{sufixo_teste}}@exemplo.com\",\n  \"telefone\": \"(54)99999-1111\",\n  \"faixa\": \"Branca\",\n  \"ativo\": true,\n  \"data_cadastro\": \"2026-10-22\"\n}"
+              "raw": "{\n  \"nome\": \"Teste Postman {{sufixo_teste}}\",\n  \"email\": \"postman.{{sufixo_teste}}@exemplo.com\",\n  \"telefone\": \"(54)99999-1111\",\n  \"faixa\": \"Branca\",\n  \"ativo\": true,\n  \"data_cadastro\": \"2026-10-22\"\n}",
+              "options": { "raw": { "language": "json" } }
             },
             "url": "{{baseUrl}}/praticante"
           },
@@ -146,7 +147,8 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"codigo\": {{codigo_praticante}},\n  \"nome\": \"Teste Postman {{sufixo_teste}}\",\n  \"email\": \"postman.{{sufixo_teste}}@exemplo.com\",\n  \"telefone\": \"(54)99999-1111\",\n  \"faixa\": \"Azul\",\n  \"ativo\": true,\n  \"data_cadastro\": \"2026-10-22\"\n}"
+              "raw": "{\n  \"codigo\": {{codigo_praticante}},\n  \"nome\": \"Teste Postman {{sufixo_teste}}\",\n  \"email\": \"postman.{{sufixo_teste}}@exemplo.com\",\n  \"telefone\": \"(54)99999-1111\",\n  \"faixa\": \"Azul\",\n  \"ativo\": true,\n  \"data_cadastro\": \"2026-10-22\"\n}",
+              "options": { "raw": { "language": "json" } }
             },
             "url": "{{baseUrl}}/praticante"
           },
@@ -181,7 +183,8 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"descricao\": \"Treino Postman {{sufixo_teste}}\",\n  \"professor\": \"Professor Teste\",\n  \"dias_semana\": \"Segunda, Quarta e Sexta\",\n  \"horario\": \"19:00\",\n  \"duracao_minutos\": 60,\n  \"limite_vagas\": 10\n}"
+              "raw": "{\n  \"descricao\": \"Treino Postman {{sufixo_teste}}\",\n  \"professor\": \"Professor Teste\",\n  \"dias_semana\": \"Segunda, Quarta e Sexta\",\n  \"horario\": \"19:00\",\n  \"duracao_minutos\": 60,\n  \"limite_vagas\": 10\n}",
+              "options": { "raw": { "language": "json" } }
             },
             "url": "{{baseUrl}}/treino"
           },
@@ -255,7 +258,8 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"codigo\": {{codigo_treino}},\n  \"descricao\": \"Treino Postman {{sufixo_teste}}\",\n  \"professor\": \"Professor Teste\",\n  \"dias_semana\": \"Segunda, Quarta e Sexta\",\n  \"horario\": \"19:00\",\n  \"duracao_minutos\": 60,\n  \"limite_vagas\": 15\n}"
+              "raw": "{\n  \"codigo\": {{codigo_treino}},\n  \"descricao\": \"Treino Postman {{sufixo_teste}}\",\n  \"professor\": \"Professor Teste\",\n  \"dias_semana\": \"Segunda, Quarta e Sexta\",\n  \"horario\": \"19:00\",\n  \"duracao_minutos\": 60,\n  \"limite_vagas\": 15\n}",
+              "options": { "raw": { "language": "json" } }
             },
             "url": "{{baseUrl}}/treino"
           },
@@ -290,7 +294,8 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"praticante\": {{codigo_praticante}},\n  \"treino\": {{codigo_treino}},\n  \"data_presenca\": \"2026-10-23\"\n}"
+              "raw": "{\n  \"praticante\": {{codigo_praticante}},\n  \"treino\": {{codigo_treino}},\n  \"data_presenca\": \"2026-10-23\"\n}",
+              "options": { "raw": { "language": "json" } }
             },
             "url": "{{baseUrl}}/presenca"
           },
@@ -364,7 +369,8 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"codigo\": {{codigo_presenca}},\n  \"praticante\": {{codigo_praticante}},\n  \"treino\": {{codigo_treino}},\n  \"data_presenca\": \"2026-10-24\"\n}"
+              "raw": "{\n  \"codigo\": {{codigo_presenca}},\n  \"praticante\": {{codigo_praticante}},\n  \"treino\": {{codigo_treino}},\n  \"data_presenca\": \"2026-10-24\"\n}",
+              "options": { "raw": { "language": "json" } }
             },
             "url": "{{baseUrl}}/presenca"
           },
