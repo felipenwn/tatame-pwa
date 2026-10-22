@@ -70,35 +70,41 @@ function Praticantes() {
 
   return (
     <section>
-      <h2>Praticantes</h2>
-      <form onSubmit={salvar}>
-        <div style={{ marginBottom: '5px' }}><label>Nome:
-          <input name="nome" value={formulario.nome} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>E-mail:
-          <input name="email" type="email" value={formulario.email} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Telefone:
-          <input name="telefone" value={formulario.telefone} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Faixa:
-          <input name="faixa" value={formulario.faixa} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Data de cadastro:
-          <input name="data_cadastro" type="date" value={formulario.data_cadastro} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>
-          <input name="ativo" type="checkbox" checked={formulario.ativo} onChange={alterarCampo} /> Ativo
-        </label></div>
-        <div style={{ marginBottom: '10px' }}>
-          <button type="submit">{formulario.codigo ? 'Alterar' : 'Criar novo'}</button>
-          {formulario.codigo && <button style={{ marginLeft: '5px' }} type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
+      <h2 className="mb-3">Praticantes</h2>
+      <form className="card card-body mb-4" style={{ maxWidth: '600px' }} onSubmit={salvar}>
+        <div className="mb-3">
+          <label className="form-label">Nome</label>
+          <input className="form-control" name="nome" value={formulario.nome} onChange={alterarCampo} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">E-mail</label>
+          <input className="form-control" name="email" type="email" value={formulario.email} onChange={alterarCampo} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Telefone</label>
+          <input className="form-control" name="telefone" value={formulario.telefone} onChange={alterarCampo} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Faixa</label>
+          <input className="form-control" name="faixa" value={formulario.faixa} onChange={alterarCampo} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Data de cadastro</label>
+          <input className="form-control" name="data_cadastro" type="date" value={formulario.data_cadastro} onChange={alterarCampo} required />
+        </div>
+        <div className="form-check mb-3">
+          <input className="form-check-input" id="praticante-ativo" name="ativo" type="checkbox" checked={formulario.ativo} onChange={alterarCampo} />
+          <label className="form-check-label" htmlFor="praticante-ativo">Ativo</label>
+        </div>
+        <div>
+          <button className="btn btn-primary" type="submit">{formulario.codigo ? 'Alterar' : 'Criar novo'}</button>
+          {formulario.codigo && <button className="btn btn-secondary ms-2" type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
         </div>
       </form>
-      {mensagem && <p>{mensagem}</p>}
-      <div>
-        <table border="1" cellPadding="5" style={{ borderCollapse: 'collapse' }}>
-          <thead>
+      {mensagem && <div className="alert alert-info">{mensagem}</div>}
+      <div className="table-responsive">
+        <table className="table table-striped table-bordered align-middle bg-white">
+          <thead className="table-dark">
             <tr>
               <th>Nome</th>
               <th>E-mail</th>
@@ -119,8 +125,8 @@ function Praticantes() {
                 <td>{praticante.ativo ? 'Sim' : 'Não'}</td>
                 <td>{formatarData(praticante.data_cadastro)}</td>
                 <td>
-                  <button style={{ marginRight: '5px' }} onClick={() => editar(praticante)}>Editar</button>
-                  <button onClick={() => remover(praticante.codigo)}>Remover</button>
+                  <button className="btn btn-warning btn-sm me-2" onClick={() => editar(praticante)}>Editar</button>
+                  <button className="btn btn-danger btn-sm" onClick={() => remover(praticante.codigo)}>Remover</button>
                 </td>
               </tr>
             ))}

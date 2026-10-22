@@ -7,17 +7,19 @@ function App() {
   const [pagina, setPagina] = useState('praticantes')
 
   return (
-    <div style={{ fontFamily: 'Arial', padding: '10px' }}>
-      <header>
-        <h1>Tatame</h1>
-        <p>Controle de treinos de Jiu-Jitsu</p>
-        <nav style={{ marginTop: '10px', marginBottom: '20px' }}>
-          <button style={{ marginRight: '5px' }} onClick={() => setPagina('praticantes')}>Praticantes</button>
-          <button style={{ marginRight: '5px' }} onClick={() => setPagina('treinos')}>Treinos</button>
-          <button onClick={() => setPagina('presencas')}>Presenças</button>
-        </nav>
+    <div className="bg-light min-vh-100">
+      <header className="bg-dark text-white py-3 mb-4">
+        <div className="container">
+          <h1 className="mb-0">Tatame</h1>
+          <p className="mb-3">Controle de treinos de Jiu-Jitsu</p>
+          <nav>
+            <button className={pagina === 'praticantes' ? 'btn btn-primary me-2' : 'btn btn-outline-light me-2'} onClick={() => setPagina('praticantes')}>Praticantes</button>
+            <button className={pagina === 'treinos' ? 'btn btn-primary me-2' : 'btn btn-outline-light me-2'} onClick={() => setPagina('treinos')}>Treinos</button>
+            <button className={pagina === 'presencas' ? 'btn btn-primary' : 'btn btn-outline-light'} onClick={() => setPagina('presencas')}>Presenças</button>
+          </nav>
+        </div>
       </header>
-      <main>
+      <main className="container pb-4">
         {pagina === 'praticantes' && <Praticantes />}
         {pagina === 'treinos' && <Treinos />}
         {pagina === 'presencas' && <Presencas />}

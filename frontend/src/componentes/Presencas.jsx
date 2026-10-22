@@ -78,36 +78,39 @@ function Presencas() {
 
   return (
     <section>
-      <h2>Presenças</h2>
-      <form onSubmit={salvar}>
-        <div style={{ marginBottom: '5px' }}><label>Praticante:
-          <select name="praticante" value={formulario.praticante} onChange={alterarCampo} required>
+      <h2 className="mb-3">Presenças</h2>
+      <form className="card card-body mb-4" style={{ maxWidth: '600px' }} onSubmit={salvar}>
+        <div className="mb-3">
+          <label className="form-label">Praticante</label>
+          <select className="form-select" name="praticante" value={formulario.praticante} onChange={alterarCampo} required>
             <option value="">Selecione</option>
             {praticantes.map(praticante => (
               <option key={praticante.codigo} value={praticante.codigo}>{praticante.nome}</option>
             ))}
           </select>
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Treino:
-          <select name="treino" value={formulario.treino} onChange={alterarCampo} required>
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Treino</label>
+          <select className="form-select" name="treino" value={formulario.treino} onChange={alterarCampo} required>
             <option value="">Selecione</option>
             {treinos.map(treino => (
               <option key={treino.codigo} value={treino.codigo}>{treino.descricao}</option>
             ))}
           </select>
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Data da presença:
-          <input name="data_presenca" type="date" value={formulario.data_presenca} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '10px' }}>
-          <button type="submit">{formulario.codigo ? 'Alterar' : 'Criar novo'}</button>
-          {formulario.codigo && <button style={{ marginLeft: '5px' }} type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Data da presença</label>
+          <input className="form-control" name="data_presenca" type="date" value={formulario.data_presenca} onChange={alterarCampo} required />
+        </div>
+        <div>
+          <button className="btn btn-primary" type="submit">{formulario.codigo ? 'Alterar' : 'Criar novo'}</button>
+          {formulario.codigo && <button className="btn btn-secondary ms-2" type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
         </div>
       </form>
-      {mensagem && <p>{mensagem}</p>}
-      <div>
-        <table border="1" cellPadding="5" style={{ borderCollapse: 'collapse' }}>
-          <thead>
+      {mensagem && <div className="alert alert-info">{mensagem}</div>}
+      <div className="table-responsive">
+        <table className="table table-striped table-bordered align-middle bg-white">
+          <thead className="table-dark">
             <tr>
               <th>Praticante</th>
               <th>Treino</th>
@@ -122,8 +125,8 @@ function Presencas() {
                 <td>{presenca.treino_descricao}</td>
                 <td>{formatarData(presenca.data_presenca)}</td>
                 <td>
-                  <button style={{ marginRight: '5px' }} onClick={() => editar(presenca)}>Editar</button>
-                  <button onClick={() => remover(presenca.codigo)}>Remover</button>
+                  <button className="btn btn-warning btn-sm me-2" onClick={() => editar(presenca)}>Editar</button>
+                  <button className="btn btn-danger btn-sm" onClick={() => remover(presenca.codigo)}>Remover</button>
                 </td>
               </tr>
             ))}

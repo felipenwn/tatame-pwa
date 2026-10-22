@@ -67,35 +67,41 @@ function Treinos() {
 
   return (
     <section>
-      <h2>Treinos</h2>
-      <form onSubmit={salvar}>
-        <div style={{ marginBottom: '5px' }}><label>Descrição:
-          <input name="descricao" value={formulario.descricao} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Professor:
-          <input name="professor" value={formulario.professor} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Dias da semana:
-          <input name="dias_semana" value={formulario.dias_semana} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Horário:
-          <input name="horario" type="time" value={formulario.horario} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Duração em minutos:
-          <input name="duracao_minutos" type="number" min="1" value={formulario.duracao_minutos} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Limite de vagas:
-          <input name="limite_vagas" type="number" min="1" value={formulario.limite_vagas} onChange={alterarCampo} required />
-        </label></div>
-        <div style={{ marginBottom: '10px' }}>
-          <button type="submit">{formulario.codigo ? 'Alterar' : 'Criar novo'}</button>
-          {formulario.codigo && <button style={{ marginLeft: '5px' }} type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
+      <h2 className="mb-3">Treinos</h2>
+      <form className="card card-body mb-4" style={{ maxWidth: '600px' }} onSubmit={salvar}>
+        <div className="mb-3">
+          <label className="form-label">Descrição</label>
+          <input className="form-control" name="descricao" value={formulario.descricao} onChange={alterarCampo} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Professor</label>
+          <input className="form-control" name="professor" value={formulario.professor} onChange={alterarCampo} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Dias da semana</label>
+          <input className="form-control" name="dias_semana" value={formulario.dias_semana} onChange={alterarCampo} placeholder="Exemplo: Segunda, Quarta e Sexta" required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Horário</label>
+          <input className="form-control" name="horario" type="time" value={formulario.horario} onChange={alterarCampo} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Duração em minutos</label>
+          <input className="form-control" name="duracao_minutos" type="number" min="1" value={formulario.duracao_minutos} onChange={alterarCampo} required />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Limite de vagas</label>
+          <input className="form-control" name="limite_vagas" type="number" min="1" value={formulario.limite_vagas} onChange={alterarCampo} required />
+        </div>
+        <div>
+          <button className="btn btn-primary" type="submit">{formulario.codigo ? 'Alterar' : 'Criar novo'}</button>
+          {formulario.codigo && <button className="btn btn-secondary ms-2" type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
         </div>
       </form>
-      {mensagem && <p>{mensagem}</p>}
-      <div>
-        <table border="1" cellPadding="5" style={{ borderCollapse: 'collapse' }}>
-          <thead>
+      {mensagem && <div className="alert alert-info">{mensagem}</div>}
+      <div className="table-responsive">
+        <table className="table table-striped table-bordered align-middle bg-white">
+          <thead className="table-dark">
             <tr>
               <th>Descrição</th>
               <th>Professor</th>
@@ -116,8 +122,8 @@ function Treinos() {
                 <td>{treino.duracao_minutos} min</td>
                 <td>{treino.limite_vagas}</td>
                 <td>
-                  <button style={{ marginRight: '5px' }} onClick={() => editar(treino)}>Editar</button>
-                  <button onClick={() => remover(treino.codigo)}>Remover</button>
+                  <button className="btn btn-warning btn-sm me-2" onClick={() => editar(treino)}>Editar</button>
+                  <button className="btn btn-danger btn-sm" onClick={() => remover(treino.codigo)}>Remover</button>
                 </td>
               </tr>
             ))}
