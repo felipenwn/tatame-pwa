@@ -12,7 +12,7 @@ create table treinos (
     codigo serial not null primary key,
     descricao varchar(80) not null,
     professor varchar(50) not null,
-    data date not null,
+    dias_semana varchar(50) not null,
     horario varchar(5) not null,
     duracao_minutos integer not null,
     check (duracao_minutos > 0),
@@ -34,9 +34,9 @@ insert into praticantes (nome, email, telefone, faixa, ativo, data_cadastro) val
 ('Marina Souza', 'marina@email.com', '(54)99999-2222', 'Azul', true, current_date),
 ('Pedro Lima', 'pedro@email.com', '(54)99999-3333', 'Roxa', true, current_date);
 
-insert into treinos (descricao, professor, data, horario, duracao_minutos, limite_vagas) values
-('Fundamentos de Jiu-Jitsu', 'Rafael Alves', current_date, '19:00', 60, 20),
-('Treino de competição', 'Juliana Costa', current_date, '20:00', 90, 15);
+insert into treinos (descricao, professor, dias_semana, horario, duracao_minutos, limite_vagas) values
+('Fundamentos de Jiu-Jitsu', 'Rafael Alves', 'Segunda, Quarta e Sexta', '19:00', 60, 20),
+('Treino de competição', 'Juliana Costa', 'Terça e Quinta', '20:00', 90, 15);
 
 insert into presencas (praticante, treino, data_presenca) values
 (1, 1, current_date),

@@ -2,7 +2,7 @@ const { Treino } = require('../entidades/modelos')
 
 const listarTreinosBanco = async () => {
     try {
-        return await Treino.findAll({ order: [['data', 'ASC'], ['horario', 'ASC']] })
+        return await Treino.findAll({ order: [['descricao', 'ASC'], ['horario', 'ASC']] })
     } catch (erro) {
         throw 'Erro ao consultar os treinos: ' + erro.message
     }

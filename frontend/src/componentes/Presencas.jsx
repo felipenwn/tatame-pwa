@@ -8,6 +8,8 @@ const formularioVazio = {
   data_presenca: ''
 }
 
+const formatarData = data => data ? data.split('-').reverse().join('/') : ''
+
 function Presencas() {
   const [presencas, setPresencas] = useState([])
   const [praticantes, setPraticantes] = useState([])
@@ -118,7 +120,7 @@ function Presencas() {
               <tr key={presenca.codigo}>
                 <td>{presenca.praticante_nome}</td>
                 <td>{presenca.treino_descricao}</td>
-                <td>{presenca.data_presenca}</td>
+                <td>{formatarData(presenca.data_presenca)}</td>
                 <td>
                   <button style={{ marginRight: '5px' }} onClick={() => editar(presenca)}>Editar</button>
                   <button onClick={() => remover(presenca.codigo)}>Remover</button>

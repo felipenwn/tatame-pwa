@@ -11,6 +11,8 @@ const formularioVazio = {
   data_cadastro: ''
 }
 
+const formatarData = data => data ? data.split('-').reverse().join('/') : ''
+
 function Praticantes() {
   const [praticantes, setPraticantes] = useState([])
   const [formulario, setFormulario] = useState(formularioVazio)
@@ -115,7 +117,7 @@ function Praticantes() {
                 <td>{praticante.telefone}</td>
                 <td>{praticante.faixa}</td>
                 <td>{praticante.ativo ? 'Sim' : 'Não'}</td>
-                <td>{praticante.data_cadastro}</td>
+                <td>{formatarData(praticante.data_cadastro)}</td>
                 <td>
                   <button style={{ marginRight: '5px' }} onClick={() => editar(praticante)}>Editar</button>
                   <button onClick={() => remover(praticante.codigo)}>Remover</button>

@@ -5,7 +5,7 @@ const formularioVazio = {
   codigo: '',
   descricao: '',
   professor: '',
-  data: '',
+  dias_semana: '',
   horario: '',
   duracao_minutos: '',
   limite_vagas: ''
@@ -75,8 +75,8 @@ function Treinos() {
         <div style={{ marginBottom: '5px' }}><label>Professor:
           <input name="professor" value={formulario.professor} onChange={alterarCampo} required />
         </label></div>
-        <div style={{ marginBottom: '5px' }}><label>Data:
-          <input name="data" type="date" value={formulario.data} onChange={alterarCampo} required />
+        <div style={{ marginBottom: '5px' }}><label>Dias da semana:
+          <input name="dias_semana" value={formulario.dias_semana} onChange={alterarCampo} required />
         </label></div>
         <div style={{ marginBottom: '5px' }}><label>Horário:
           <input name="horario" type="time" value={formulario.horario} onChange={alterarCampo} required />
@@ -99,7 +99,7 @@ function Treinos() {
             <tr>
               <th>Descrição</th>
               <th>Professor</th>
-              <th>Data</th>
+              <th>Dias da semana</th>
               <th>Horário</th>
               <th>Duração</th>
               <th>Vagas</th>
@@ -111,7 +111,7 @@ function Treinos() {
               <tr key={treino.codigo}>
                 <td>{treino.descricao}</td>
                 <td>{treino.professor}</td>
-                <td>{treino.data}</td>
+                <td>{treino.dias_semana}</td>
                 <td>{treino.horario}</td>
                 <td>{treino.duracao_minutos} min</td>
                 <td>{treino.limite_vagas}</td>

@@ -15,8 +15,8 @@ const Treino = sequelize.define('Treino', {
         type: DataTypes.STRING(50),
         allowNull: false
     },
-    data: {
-        type: DataTypes.DATEONLY,
+    dias_semana: {
+        type: DataTypes.STRING(50),
         allowNull: false
     },
     horario: {
