@@ -1,0 +1,456 @@
+{
+  "info": {
+    "_postman_id": "0df2457f-b255-4bf4-9821-9fd58762df7f",
+    "name": "Tatame PWA - Testes da API",
+    "description": "Testes CRUD da API publicada. Execute a collection na ordem para criar os dados temporarios e remove-los no final.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://tatame-api-qc0d.onrender.com"
+    },
+    {
+      "key": "sufixo_teste",
+      "value": ""
+    },
+    {
+      "key": "codigo_praticante",
+      "value": ""
+    },
+    {
+      "key": "codigo_treino",
+      "value": ""
+    },
+    {
+      "key": "codigo_presenca",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1 - API",
+      "item": [
+        {
+          "name": "Verificar API",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test('API funcionando', function () {",
+                  "    pm.expect(pm.response.json().mensagem).to.eql('API Tatame funcionando');",
+                  "});",
+                  "pm.collectionVariables.set('sufixo_teste', Date.now().toString());"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2 - Praticantes",
+      "item": [
+        {
+          "name": "Criar praticante",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Teste Postman {{sufixo_teste}}\",\n  \"email\": \"postman.{{sufixo_teste}}@exemplo.com\",\n  \"telefone\": \"(54)99999-1111\",\n  \"faixa\": \"Branca\",\n  \"ativo\": true,\n  \"data_cadastro\": \"2026-10-22\"\n}"
+            },
+            "url": "{{baseUrl}}/praticante"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Praticante criado', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.status).to.eql('sucesso');",
+                  "    pm.collectionVariables.set('codigo_praticante', resposta.objeto.codigo);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar praticantes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/praticante"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Lista de praticantes recebida', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar praticante pelo codigo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/praticante/{{codigo_praticante}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Praticante correto encontrado', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().codigo).to.eql(Number(pm.collectionVariables.get('codigo_praticante')));",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Alterar praticante",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo\": {{codigo_praticante}},\n  \"nome\": \"Teste Postman {{sufixo_teste}}\",\n  \"email\": \"postman.{{sufixo_teste}}@exemplo.com\",\n  \"telefone\": \"(54)99999-1111\",\n  \"faixa\": \"Azul\",\n  \"ativo\": true,\n  \"data_cadastro\": \"2026-10-22\"\n}"
+            },
+            "url": "{{baseUrl}}/praticante"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Praticante alterado', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().objeto.faixa).to.eql('Azul');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3 - Treinos",
+      "item": [
+        {
+          "name": "Criar treino",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"descricao\": \"Treino Postman {{sufixo_teste}}\",\n  \"professor\": \"Professor Teste\",\n  \"data\": \"2026-10-23\",\n  \"horario\": \"19:00\",\n  \"duracao_minutos\": 60,\n  \"limite_vagas\": 10\n}"
+            },
+            "url": "{{baseUrl}}/treino"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Treino criado', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.status).to.eql('sucesso');",
+                  "    pm.collectionVariables.set('codigo_treino', resposta.objeto.codigo);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar treinos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/treino"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Lista de treinos recebida', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar treino pelo codigo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/treino/{{codigo_treino}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Treino correto encontrado', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().codigo).to.eql(Number(pm.collectionVariables.get('codigo_treino')));",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Alterar treino",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo\": {{codigo_treino}},\n  \"descricao\": \"Treino Postman {{sufixo_teste}}\",\n  \"professor\": \"Professor Teste\",\n  \"data\": \"2026-10-23\",\n  \"horario\": \"19:00\",\n  \"duracao_minutos\": 60,\n  \"limite_vagas\": 15\n}"
+            },
+            "url": "{{baseUrl}}/treino"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Treino alterado', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().objeto.limite_vagas).to.eql(15);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4 - Presencas",
+      "item": [
+        {
+          "name": "Criar presenca",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"praticante\": {{codigo_praticante}},\n  \"treino\": {{codigo_treino}},\n  \"data_presenca\": \"2026-10-23\"\n}"
+            },
+            "url": "{{baseUrl}}/presenca"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Presenca criada', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    const resposta = pm.response.json();",
+                  "    pm.expect(resposta.status).to.eql('sucesso');",
+                  "    pm.collectionVariables.set('codigo_presenca', resposta.objeto.codigo);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Listar presencas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/presenca"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Lista de presencas recebida', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Buscar presenca pelo codigo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/presenca/{{codigo_presenca}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Presenca correta encontrada', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().codigo).to.eql(Number(pm.collectionVariables.get('codigo_presenca')));",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Alterar presenca",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo\": {{codigo_presenca}},\n  \"praticante\": {{codigo_praticante}},\n  \"treino\": {{codigo_treino}},\n  \"data_presenca\": \"2026-10-24\"\n}"
+            },
+            "url": "{{baseUrl}}/presenca"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Presenca alterada', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().objeto.data_presenca).to.eql('2026-10-24');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5 - Limpeza",
+      "item": [
+        {
+          "name": "Remover presenca de teste",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/presenca/{{codigo_presenca}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Presenca removida', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().status).to.eql('sucesso');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Remover treino de teste",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/treino/{{codigo_treino}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Treino removido', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().status).to.eql('sucesso');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Remover praticante de teste",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{baseUrl}}/praticante/{{codigo_praticante}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Praticante removido', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    pm.expect(pm.response.json().status).to.eql('sucesso');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
