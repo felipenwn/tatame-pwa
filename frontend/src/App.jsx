@@ -7,13 +7,13 @@ function App() {
   const [pagina, setPagina] = useState('praticantes')
 
   return (
-    <>
+    <div style={{ fontFamily: 'Arial', padding: '10px' }}>
       <header>
         <h1>Tatame</h1>
         <p>Controle de treinos de Jiu-Jitsu</p>
-        <nav>
-          <button onClick={() => setPagina('praticantes')}>Praticantes</button>
-          <button onClick={() => setPagina('treinos')}>Treinos</button>
+        <nav style={{ marginTop: '10px', marginBottom: '20px' }}>
+          <button style={{ marginRight: '5px' }} onClick={() => setPagina('praticantes')}>Praticantes</button>
+          <button style={{ marginRight: '5px' }} onClick={() => setPagina('treinos')}>Treinos</button>
           <button onClick={() => setPagina('presencas')}>Presenças</button>
         </nav>
       </header>
@@ -22,7 +22,7 @@ function App() {
         {pagina === 'treinos' && <Treinos />}
         {pagina === 'presencas' && <Presencas />}
       </main>
-    </>
+    </div>
   )
 }
 

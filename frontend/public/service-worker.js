@@ -1,4 +1,4 @@
-const cache = 'tatame-pwa-v1'
+const cache = 'tatame-pwa-v2'
 const arquivos = ['/', '/index.html', '/manifest.json', '/icone.svg']
 
 self.addEventListener('install', evento => {

@@ -78,33 +78,33 @@ function Presencas() {
     <section>
       <h2>Presenças</h2>
       <form onSubmit={salvar}>
-        <label>Praticante
+        <div style={{ marginBottom: '5px' }}><label>Praticante:
           <select name="praticante" value={formulario.praticante} onChange={alterarCampo} required>
             <option value="">Selecione</option>
             {praticantes.map(praticante => (
               <option key={praticante.codigo} value={praticante.codigo}>{praticante.nome}</option>
             ))}
           </select>
-        </label>
-        <label>Treino
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Treino:
           <select name="treino" value={formulario.treino} onChange={alterarCampo} required>
             <option value="">Selecione</option>
             {treinos.map(treino => (
               <option key={treino.codigo} value={treino.codigo}>{treino.descricao}</option>
             ))}
           </select>
-        </label>
-        <label>Data da presença
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Data da presença:
           <input name="data_presenca" type="date" value={formulario.data_presenca} onChange={alterarCampo} required />
-        </label>
-        <div className="botoes-formulario">
+        </label></div>
+        <div style={{ marginBottom: '10px' }}>
           <button type="submit">{formulario.codigo ? 'Alterar' : 'Criar novo'}</button>
-          {formulario.codigo && <button type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
+          {formulario.codigo && <button style={{ marginLeft: '5px' }} type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
         </div>
       </form>
-      {mensagem && <p className="mensagem">{mensagem}</p>}
-      <div className="tabela">
-        <table>
+      {mensagem && <p>{mensagem}</p>}
+      <div>
+        <table border="1" cellPadding="5" style={{ borderCollapse: 'collapse' }}>
           <thead>
             <tr>
               <th>Praticante</th>
@@ -120,7 +120,7 @@ function Presencas() {
                 <td>{presenca.treino_descricao}</td>
                 <td>{presenca.data_presenca}</td>
                 <td>
-                  <button onClick={() => editar(presenca)}>Editar</button>
+                  <button style={{ marginRight: '5px' }} onClick={() => editar(presenca)}>Editar</button>
                   <button onClick={() => remover(presenca.codigo)}>Remover</button>
                 </td>
               </tr>

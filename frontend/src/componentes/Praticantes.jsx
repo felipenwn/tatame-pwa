@@ -70,32 +70,32 @@ function Praticantes() {
     <section>
       <h2>Praticantes</h2>
       <form onSubmit={salvar}>
-        <label>Nome
+        <div style={{ marginBottom: '5px' }}><label>Nome:
           <input name="nome" value={formulario.nome} onChange={alterarCampo} required />
-        </label>
-        <label>E-mail
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>E-mail:
           <input name="email" type="email" value={formulario.email} onChange={alterarCampo} required />
-        </label>
-        <label>Telefone
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Telefone:
           <input name="telefone" value={formulario.telefone} onChange={alterarCampo} required />
-        </label>
-        <label>Faixa
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Faixa:
           <input name="faixa" value={formulario.faixa} onChange={alterarCampo} required />
-        </label>
-        <label>Data de cadastro
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Data de cadastro:
           <input name="data_cadastro" type="date" value={formulario.data_cadastro} onChange={alterarCampo} required />
-        </label>
-        <label className="marcacao">
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>
           <input name="ativo" type="checkbox" checked={formulario.ativo} onChange={alterarCampo} /> Ativo
-        </label>
-        <div className="botoes-formulario">
+        </label></div>
+        <div style={{ marginBottom: '10px' }}>
           <button type="submit">{formulario.codigo ? 'Alterar' : 'Criar novo'}</button>
-          {formulario.codigo && <button type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
+          {formulario.codigo && <button style={{ marginLeft: '5px' }} type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
         </div>
       </form>
-      {mensagem && <p className="mensagem">{mensagem}</p>}
-      <div className="tabela">
-        <table>
+      {mensagem && <p>{mensagem}</p>}
+      <div>
+        <table border="1" cellPadding="5" style={{ borderCollapse: 'collapse' }}>
           <thead>
             <tr>
               <th>Nome</th>
@@ -117,7 +117,7 @@ function Praticantes() {
                 <td>{praticante.ativo ? 'Sim' : 'Não'}</td>
                 <td>{praticante.data_cadastro}</td>
                 <td>
-                  <button onClick={() => editar(praticante)}>Editar</button>
+                  <button style={{ marginRight: '5px' }} onClick={() => editar(praticante)}>Editar</button>
                   <button onClick={() => remover(praticante.codigo)}>Remover</button>
                 </td>
               </tr>

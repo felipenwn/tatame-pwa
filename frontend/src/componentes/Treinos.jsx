@@ -69,32 +69,32 @@ function Treinos() {
     <section>
       <h2>Treinos</h2>
       <form onSubmit={salvar}>
-        <label>Descrição
+        <div style={{ marginBottom: '5px' }}><label>Descrição:
           <input name="descricao" value={formulario.descricao} onChange={alterarCampo} required />
-        </label>
-        <label>Professor
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Professor:
           <input name="professor" value={formulario.professor} onChange={alterarCampo} required />
-        </label>
-        <label>Data
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Data:
           <input name="data" type="date" value={formulario.data} onChange={alterarCampo} required />
-        </label>
-        <label>Horário
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Horário:
           <input name="horario" type="time" value={formulario.horario} onChange={alterarCampo} required />
-        </label>
-        <label>Duração em minutos
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Duração em minutos:
           <input name="duracao_minutos" type="number" min="1" value={formulario.duracao_minutos} onChange={alterarCampo} required />
-        </label>
-        <label>Limite de vagas
+        </label></div>
+        <div style={{ marginBottom: '5px' }}><label>Limite de vagas:
           <input name="limite_vagas" type="number" min="1" value={formulario.limite_vagas} onChange={alterarCampo} required />
-        </label>
-        <div className="botoes-formulario">
+        </label></div>
+        <div style={{ marginBottom: '10px' }}>
           <button type="submit">{formulario.codigo ? 'Alterar' : 'Criar novo'}</button>
-          {formulario.codigo && <button type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
+          {formulario.codigo && <button style={{ marginLeft: '5px' }} type="button" onClick={() => setFormulario(formularioVazio)}>Cancelar</button>}
         </div>
       </form>
-      {mensagem && <p className="mensagem">{mensagem}</p>}
-      <div className="tabela">
-        <table>
+      {mensagem && <p>{mensagem}</p>}
+      <div>
+        <table border="1" cellPadding="5" style={{ borderCollapse: 'collapse' }}>
           <thead>
             <tr>
               <th>Descrição</th>
@@ -116,7 +116,7 @@ function Treinos() {
                 <td>{treino.duracao_minutos} min</td>
                 <td>{treino.limite_vagas}</td>
                 <td>
-                  <button onClick={() => editar(treino)}>Editar</button>
+                  <button style={{ marginRight: '5px' }} onClick={() => editar(treino)}>Editar</button>
                   <button onClick={() => remover(treino.codigo)}>Remover</button>
                 </td>
               </tr>
